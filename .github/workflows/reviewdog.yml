@@ -1,0 +1,27 @@
+---
+name: reviewdog
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+  push:
+
+jobs:
+
+  shellcheck:
+    name: runner / shellcheck
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3.0.2
+      - name: shellcheck
+        uses: reviewdog/action-shellcheck@v1.15.0
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          path: "./bin"
+          pattern: |
+            *
+          exclude: "./.git/*"
