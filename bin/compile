@@ -10,20 +10,21 @@ PLATFORM="linux"
 FILENAME="prism-cli-$PLATFORM"
 URL="https://github.com/stoplightio/prism/releases/latest/download/$FILENAME"
 
-mkdir -p $CACHE_DIR
-mkdir -p $BUILD_DIR/vendor/prism/bin
+mkdir -p "$CACHE_DIR"
+mkdir -p "$BUILD_DIR/vendor/prism/bin"
 
-if ! [ -e $CACHE_DIR/$FILENAME ]; then
+if ! [ -e "$CACHE_DIR/$FILENAME" ]; then
   echo "-----> Downloading Prism binary"
-  curl $URL -s -Lo $CACHE_DIR/$FILENAME
+  curl $URL -s -Lo "$CACHE_DIR/$FILENAME"
 fi
 
-cp $CACHE_DIR/$FILENAME $BUILD_DIR/vendor/prism/bin/prism
-chmod +x $BUILD_DIR/vendor/prism/bin/prism
+cp "$CACHE_DIR/$FILENAME" "$BUILD_DIR/vendor/prism/bin/prism"
+chmod +x "$BUILD_DIR/vendor/prism/bin/prism"
 
 # populate profile.d
 PROFILE_PATH="$BUILD_DIR/.profile.d/prism.sh"
-mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="$HOME/vendor/prism/bin:$PATH"' >> $PROFILE_PATH
+mkdir -p "$(dirname "$PROFILE_PATH")"
+# shellcheck disable=SC2016
+echo 'export PATH="$HOME/vendor/prism/bin:$PATH"' >> "$PROFILE_PATH"
 
 echo "-----> Prism is successfully installed"
