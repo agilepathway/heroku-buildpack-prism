@@ -53,3 +53,14 @@ jobs:
           language: en
           disabled_rules:
             "GITHUB,DASH_RULE,PUNCTUATION_PARAGRAPH_END"
+
+  misspell:
+    name: runner / misspell
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3.0.2
+      - uses: reviewdog/action-misspell@v1.12.2
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          filter_mode: nofilter
