@@ -38,3 +38,18 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
           filter_mode: nofilter
+
+  languagetool:
+    name: runner / languagetool
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3.0.2
+      - uses: reviewdog/action-languagetool@v1.9.0
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          patterns: |
+            **/*.md
+          language: en
+          disabled_rules:
+            "GITHUB,DASH_RULE,PUNCTUATION_PARAGRAPH_END"
