@@ -13,7 +13,7 @@ jobs:
 
   shellcheck:
     name: runner / shellcheck
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.2
       - name: shellcheck
@@ -29,7 +29,7 @@ jobs:
 
   yamllint:
     name: runner / yamllint
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.2
       - name: yamllint
@@ -41,7 +41,7 @@ jobs:
 
   languagetool:
     name: runner / languagetool
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.2
       - uses: reviewdog/action-languagetool@v1.9.0
@@ -56,7 +56,7 @@ jobs:
 
   misspell:
     name: runner / misspell
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.2
       - uses: reviewdog/action-misspell@v1.12.2
